@@ -1,0 +1,2651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minor Consent to Behavioral Health Care — Module 1 | Trauma Informed Oregon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* TIO Official Palette */
+    --tio-teal:#058AB1;
+    --tio-teal-text:#006B8F;
+    --tio-navy:#355166;
+    --tio-navy-dark:#223645;
+    --tio-light-blue:#C6D8E1;
+    --tio-yellow:#FFD054;
+    --tio-orange:#A44624;
+    
+    /* Functional Colors */
+    --paper:#F4F7F9;
+    --card:#FFFFFF;
+    --card-tint:#EBF2F6;
+    --ink:#1D2B36;
+    --ink-soft:#425866;
+    --ink-faint:#526B78;
+    --line:rgba(53, 81, 102, 0.15);
+    --shadow: 0 4px 14px rgba(34, 54, 69, 0.08), 0 10px 30px rgba(34, 54, 69, 0.06);
+  }
+  
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  
+  h1,h2,h3,.display{
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- App Shell ---------- */
+  .app{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .app{grid-template-columns:1fr;}
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    background:var(--tio-navy-dark);
+    color:#E3ECF1;
+    padding:26px 20px 22px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  @media (max-width:860px){
+    .sidebar{position:relative; height:auto; top:auto;}
+  }
+  
+  .brand-logo-wrap {
+    margin-bottom: 6px;
+    background: #FFFFFF;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  }
+  .brand-logo-wrap img {
+    max-width: 100%;
+    height: auto;
+    max-height: 85px;
+    object-fit: contain;
+    display: block;
+  }
+  
+  .brand-title{
+    font-size:15px;
+    font-weight:700;
+    color:#FFFFFF;
+    margin:4px 0 0;
+    line-height:1.35;
+    text-wrap: balance;
+  }
+  .brand-sub{
+    font-size:12px;
+    color:var(--tio-light-blue);
+    margin-top:2px;
+  }
+  .sidebar-progress{
+    height:6px;
+    border-radius:4px;
+    background:rgba(255,255,255,0.12);
+    overflow:hidden;
+    margin-top:8px;
+  }
+  .sidebar-progress-fill{
+    height:100%;
+    background:var(--tio-teal);
+    border-radius:4px;
+    transition:width .3s ease;
+  }
+  .sidebar-progress-label{
+    font-size:11px;
+    color:var(--tio-light-blue);
+    margin-top:5px;
+  }
+  
+  nav.sections{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin-top:6px;
+  }
+  .sec-item{
+    width:100%;
+    border:0;
+    background:transparent;
+    font-family:inherit;
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:12.5px;
+    color:#C2D5DE;
+    transition:background .2s ease, color .2s ease;
+  }
+  .sec-item:hover{background:rgba(255,255,255,0.08);}
+  .sec-item.active{
+    background:rgba(5, 138, 177, 0.28);
+    color:#FFFFFF;
+    font-weight:600;
+  }
+  .sec-dot{
+    width:7px; height:7px; border-radius:50%;
+    background:#4A6777;
+    flex-shrink:0;
+  }
+  .sec-item.active .sec-dot{background:var(--tio-yellow);}
+
+  .sidebar-footer{
+    margin-top:auto;
+    padding-top:14px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    font-size:11px;
+    color:#8AA0AE;
+  }
+
+  /* ---------- Main Layout ---------- */
+  main{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+  }
+  .topbar{
+    height:5px;
+    background:var(--line);
+    position:sticky; top:0; z-index:5;
+  }
+  .topbar-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--tio-teal), var(--tio-yellow));
+    width:0%;
+    transition:width .3s ease;
+  }
+  .stage-wrap{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    padding:44px 36px 40px;
+  }
+  .stage{
+    width:100%;
+    max-width:860px;
+  }
+  
+  .slide-stage-enter {
+    animation: slideFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  @keyframes slideFadeIn {
+    0% { opacity: 0; transform: translateY(12px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .eyebrow-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+    color:var(--tio-teal);
+    font-size:12px;
+    font-weight:600;
+  }
+  .eyebrow-row .pos{
+    color:var(--ink-faint);
+    margin-left:auto;
+  }
+  
+  .slide-title{
+    font-size:32px;
+    font-weight:800;
+    margin:0 0 18px;
+    color:var(--tio-navy);
+    line-height:1.25;
+    text-wrap: balance;
+  }
+  .slide-body p{
+    margin:0 0 14px;
+    color:var(--ink-soft);
+    font-size:16px;
+    line-height:1.65;
+  }
+
+  /* Cards */
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:36px;
+    box-shadow:var(--shadow);
+  }
+
+  /* Cover Slide Formatting */
+  .cover{
+    text-align:left;
+    padding:4px 0;
+  }
+  .cover .module-tag{
+    display:inline-block;
+    font-size:12px;
+    font-weight:600;
+    color:var(--tio-navy);
+    background:var(--tio-light-blue);
+    padding:6px 14px;
+    border-radius:100px;
+    margin-bottom:18px;
+  }
+  .cover h1{
+    font-size:38px;
+    line-height:1.2;
+    color:var(--tio-navy);
+    margin:0 0 10px;
+    width: 100%;
+    text-wrap: balance;
+  }
+  .cover .sub{
+    font-size:18px;
+    color:var(--ink-soft);
+    margin-bottom: 22px;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  /* Instructor Profile Card on Slide 2 */
+  .trainer-profile-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    background: var(--card-tint);
+    border-radius: 14px;
+    padding: 22px 24px;
+    margin-top: 24px;
+    border: 1px solid var(--line);
+  }
+  .trainer-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--tio-teal);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    flex-shrink: 0;
+  }
+  .trainer-info h4 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    color: var(--tio-navy);
+    font-weight: 700;
+  }
+  .trainer-info .role {
+    font-size: 14px;
+    color: var(--tio-teal);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .trainer-info .org {
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  /* Video Player Container */
+  .intro-video-card {
+    background: linear-gradient(135deg, var(--tio-navy-dark), var(--tio-navy));
+    border-radius: 14px;
+    padding: 22px;
+    color: #FFFFFF;
+    border: 1px solid var(--tio-teal);
+    box-shadow: var(--shadow);
+  }
+  .intro-video-card h3 {
+    margin: 0 0 6px;
+    color: var(--tio-yellow);
+    font-size: 18px;
+  }
+  .intro-video-card p {
+    font-size: 13.5px;
+    color: var(--tio-light-blue);
+    margin-bottom: 14px;
+  }
+  .intro-video-element {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    background: var(--card-tint);
+    outline: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+
+  /* Audio Player Styling */
+  .audio-player-container {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+  .audio-player-container audio {
+    width: 100%;
+    border-radius: 8px;
+    outline: none;
+  }
+
+
+  .audio-status{
+    min-height:1.4em;
+    margin-top:8px;
+    color:var(--ink-soft);
+    font-size:13px;
+  }
+  .audio-status.is-error{
+    padding:10px 12px;
+    border-radius:9px;
+    background:var(--card-tint);
+    border-left:4px solid var(--tio-teal);
+    color:var(--tio-navy-dark);
+  }
+
+
+  /* ---------- Text alternatives and review metadata ---------- */
+  .reviewed-date{margin-top:10px;color:var(--tio-light-blue);font-size:11px;}
+  .transcript-disclosure{margin-top:14px;border:1px solid rgba(255,255,255,.22);border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden;}
+  .audio-player-container .transcript-disclosure{border-color:var(--line);background:var(--card-tint);}
+  .transcript-disclosure summary{cursor:pointer;padding:12px 14px;font-weight:700;color:inherit;min-height:44px;}
+  .audio-player-container .transcript-disclosure summary{color:var(--tio-navy);}
+  .transcript-content{padding:0 14px 14px;color:inherit;font-size:14px;line-height:1.6;}
+  .audio-player-container .transcript-content{color:var(--ink-soft);}
+  .transcript-content p:last-child{margin-bottom:0;}
+  .transcript-note{font-size:12.5px;color:var(--ink-faint);margin-top:10px;}
+
+  /* Section Dividers */
+  .divider-slide{
+    background:var(--tio-navy);
+    color:#FFFFFF;
+    border-radius:16px;
+    padding:64px 36px;
+    text-align:center;
+  }
+  .divider-slide .num{
+    font-size:12px;
+    color:var(--tio-light-blue);
+    margin-bottom:14px;
+  }
+  .divider-slide h2{
+    font-size:36px;
+    margin:0;
+    color:#FFFFFF;
+  }
+
+  /* Callout / Disclaimer Box */
+  .callout{
+    background:var(--tio-light-blue);
+    border-radius:14px;
+    padding:28px;
+    border-left: 6px solid var(--tio-teal);
+  }
+  .callout .slide-title{ color:var(--tio-navy); font-size:24px;}
+  .callout p{color:var(--tio-navy-dark); margin:0; font-size: 15.5px; line-height: 1.65;}
+
+  /* Definition List Styling */
+  .def-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .def-item:last-child { border-bottom: none; }
+  .def-term { font-weight:700; color:var(--tio-navy); font-size:16.5px; margin-bottom:4px; }
+  .def-text { color:var(--ink-soft); font-size:15px; }
+
+  /* Matrix Layout Styling */
+  .matrix-box { margin-top:16px; }
+  .matrix-q-list { margin-bottom:20px; background:var(--card-tint); padding:16px; border-radius:10px; border:1px solid var(--line); }
+  .matrix-q-list h4 { margin:0 0 8px; color:var(--tio-navy); font-size:15px; }
+  .matrix-q-list ul { margin:0; padding-left:20px; color:var(--ink-soft); }
+  .matrix-groups-title { font-weight:700; color:var(--tio-navy); margin-bottom:8px; }
+  .matrix-group-chips { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+  .matrix-chip { background:var(--tio-teal); color:#FFF; padding:6px 14px; border-radius:100px; font-size:13.5px; font-weight:500; }
+
+  /* Interactive Quizzes */
+  .quiz-intro{ font-size:15.5px; color:var(--ink-soft); margin:0 0 20px; }
+  .quiz-q{ padding:20px 0; border-top:1px solid var(--line); }
+  .quiz-q:first-of-type{border-top:none; padding-top:4px;}
+  .quiz-q .stem{
+    font-size:16.5px;
+    font-weight:600;
+    color:var(--tio-navy);
+    line-height:1.4;
+    margin-bottom:12px;
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .quiz-q .stem .qn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--tio-navy);
+    background:var(--tio-light-blue);
+    border-radius:100px;
+    padding:3px 9px;
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .opt-list{display:flex; flex-direction:column; gap:8px;}
+  .opt{
+    display:flex; align-items:flex-start; gap:12px; width:100%;
+    text-align:left; background:var(--paper); border:1px solid var(--line);
+    border-radius:10px; padding:13px 15px; font-size:14.5px; color:var(--ink);
+    cursor:pointer; transition:border-color .15s ease, background .15s ease;
+  }
+  .opt:hover:not(:disabled){border-color:var(--tio-teal); background:#fff;}
+  .opt.correct{ border-color:var(--tio-teal); background:rgba(5,138,177,0.12); }
+  .opt.incorrect{ border-color:var(--tio-orange); background:rgba(164,70,36,0.10); }
+
+  .why{
+    display:none; margin-top:12px; padding:14px 16px;
+    border-radius:10px; background:var(--card-tint); font-size:14px; color:var(--ink);
+  }
+  .why.open{display:block;}
+
+  /* Controls */
+  .controls{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:860px;
+    width:100%;
+    margin:32px auto 0;
+    padding:0 4px;
+  }
+  .nav-btn{
+    background:var(--card);
+    border:1px solid var(--line);
+    color:var(--tio-navy);
+    padding:11px 24px;
+    border-radius:100px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .2s ease;
+  }
+  .nav-btn:hover:not(:disabled){background:var(--card-tint);}
+  .nav-btn:disabled{opacity:0.35; cursor:not-allowed;}
+  .nav-btn.primary{
+    background:var(--tio-navy);
+    color:#FFFFFF;
+    border-color:var(--tio-navy);
+  }
+  .nav-btn.primary:hover{background:var(--tio-teal); border-color:var(--tio-teal);}
+  .step-count{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-faint);
+  }
+  textarea.notes{
+    width:100%; min-height:100px; border:1px solid var(--line); border-radius:10px;
+    padding:12px; font-size:14.5px; font-family:'Inter', sans-serif; margin-top:10px;
+  }
+  
+
+  /* ---------- Purposeful Visual Layouts for Sparse Slides ---------- */
+  .section-gateway{
+    position:relative;
+    overflow:hidden;
+    min-height:360px;
+    background:linear-gradient(135deg, var(--tio-navy-dark), var(--tio-navy));
+    color:#FFFFFF;
+    border-radius:18px;
+    padding:58px 48px;
+    box-shadow:var(--shadow);
+    display:flex;
+    align-items:center;
+  }
+  .section-gateway::before{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    right:-150px;
+    top:-120px;
+    background:radial-gradient(circle, rgba(255,208,84,.22), rgba(5,138,177,.08) 55%, transparent 70%);
+  }
+  .section-gateway::after{
+    content:"";
+    position:absolute;
+    left:-80px;
+    bottom:-120px;
+    width:520px;
+    height:240px;
+    border-radius:50%;
+    background:rgba(5,138,177,.18);
+    transform:rotate(-8deg);
+  }
+  .gateway-number{
+    position:absolute;
+    right:40px;
+    bottom:-22px;
+    font-size:180px;
+    line-height:1;
+    font-weight:800;
+    color:rgba(255,255,255,.08);
+    letter-spacing:-.06em;
+  }
+  .gateway-content{position:relative; z-index:1; max-width:620px;}
+  .gateway-kicker{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--tio-light-blue);
+    font-size:12px;
+    margin-bottom:14px;
+  }
+  .gateway-title{
+    font-size:44px;
+    line-height:1.1;
+    margin:0 0 16px;
+    color:#FFFFFF;
+  }
+  .gateway-preview{
+    font-size:18px;
+    line-height:1.55;
+    color:#E8F0F4;
+    margin-bottom:22px;
+    max-width:560px;
+  }
+  .gateway-chips{display:flex; flex-wrap:wrap; gap:10px;}
+  .gateway-chip{
+    display:inline-flex;
+    align-items:center;
+    min-height:34px;
+    padding:7px 13px;
+    border-radius:999px;
+    background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.16);
+    color:#FFFFFF;
+    font-size:13px;
+    font-weight:600;
+  }
+
+  .concept-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.25fr) minmax(220px,.75fr);
+    gap:26px;
+    align-items:stretch;
+  }
+  .concept-main{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:250px;
+  }
+  .concept-statement{
+    font-size:29px;
+    line-height:1.4;
+    font-weight:700;
+    color:var(--tio-navy);
+    margin:0;
+  }
+  .concept-side{
+    background:linear-gradient(145deg, var(--card-tint), #FFFFFF);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .concept-side-label{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    font-size:11px;
+    color:var(--tio-teal);
+    margin-bottom:12px;
+    font-weight:600;
+  }
+  .concept-anchors{
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+  }
+  .concept-anchor{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:15px;
+    color:var(--ink);
+    font-weight:600;
+  }
+  .concept-anchor::before{
+    content:"";
+    width:11px;
+    height:11px;
+    border-radius:50%;
+    flex:0 0 11px;
+    background:linear-gradient(135deg,var(--tio-teal),var(--tio-yellow));
+  }
+
+  .pathway{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:22px;
+  }
+  .path-step{
+    position:relative;
+    background:var(--card-tint);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 14px;
+    text-align:center;
+    font-weight:700;
+    color:var(--tio-navy);
+    min-height:74px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .path-step:not(:last-child)::after{
+    content:"→";
+    position:absolute;
+    right:-13px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--tio-teal);
+    font-size:20px;
+    z-index:2;
+  }
+
+  .comparison-table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    overflow:hidden;
+    border:1px solid var(--line);
+    border-radius:12px;
+    margin-top:14px;
+  }
+  .comparison-table th{
+    background:var(--tio-navy);
+    color:#FFFFFF;
+    text-align:left;
+    padding:14px 16px;
+    font-size:14px;
+  }
+  .comparison-table td{
+    padding:14px 16px;
+    border-top:1px solid var(--line);
+    color:var(--ink-soft);
+    vertical-align:top;
+    font-size:14.5px;
+  }
+  .comparison-table tr:nth-child(even) td{background:var(--card-tint);}
+  .comparison-table strong{color:var(--tio-navy);}
+
+  .statement-slide{
+    position:relative;
+    overflow:hidden;
+    min-height:330px;
+    display:flex;
+    align-items:center;
+  }
+  .statement-slide::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    right:-80px;
+    bottom:-100px;
+    background:linear-gradient(135deg,rgba(5,138,177,.16),rgba(255,208,84,.12));
+  }
+  .statement-inner{position:relative; z-index:1; max-width:690px;}
+  .statement-label{
+    font-family:'IBM Plex Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    font-size:12px;
+    color:var(--tio-teal);
+    margin-bottom:14px;
+  }
+  .statement-text{
+    font-size:34px;
+    line-height:1.35;
+    color:var(--tio-navy);
+    font-weight:750;
+    margin:0;
+  }
+  .statement-foot{
+    margin-top:18px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+  }
+  .statement-tag{
+    background:var(--card-tint);
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    padding:7px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+  }
+
+  .key-idea-card{
+    min-height:430px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .key-idea-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);
+    gap:28px;
+    align-items:stretch;
+  }
+  .key-idea-copy{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .key-idea-copy p{
+    font-size:21px;
+    line-height:1.55;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .key-idea-points{
+    display:grid;
+    gap:12px;
+  }
+  .key-idea-point{
+    background:var(--card-tint);
+    border:1px solid var(--line);
+    border-left:5px solid var(--tio-teal);
+    border-radius:12px;
+    padding:16px 18px;
+  }
+  .key-idea-point strong{
+    display:block;
+    color:var(--tio-navy);
+    font-size:16px;
+    margin-bottom:3px;
+  }
+  .key-idea-point span{
+    color:var(--ink-soft);
+    font-size:13.5px;
+  }
+
+  .objectives-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+    margin-top:8px;
+  }
+  .objective-card{
+    min-height:126px;
+    background:linear-gradient(145deg,#FFFFFF,var(--card-tint));
+    border:1px solid var(--line);
+    border-radius:13px;
+    padding:18px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .objective-number{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:var(--tio-navy);
+    color:#FFFFFF;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    flex:0 0 34px;
+  }
+  .objective-text{
+    color:var(--ink);
+    font-size:15.5px;
+    line-height:1.5;
+  }
+
+  .definition-compare{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:10px;
+  }
+  .definition-compare-card{
+    background:linear-gradient(145deg,#FFFFFF,var(--card-tint));
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px;
+    min-height:190px;
+  }
+  .definition-compare-card .abbr{
+    display:inline-flex;
+    min-width:54px;
+    height:38px;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px;
+    background:var(--tio-navy);
+    color:#FFFFFF;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .definition-compare-card h3{
+    margin:0 0 8px;
+    color:var(--tio-navy);
+    font-size:19px;
+  }
+  .definition-compare-card p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:14.5px;
+    line-height:1.55;
+  }
+  .definition-bottom-note{
+    margin-top:16px;
+    background:var(--tio-light-blue);
+    color:var(--tio-navy-dark);
+    border-radius:11px;
+    padding:14px 16px;
+    font-size:14px;
+    border-left:5px solid var(--tio-teal);
+  }
+
+  @media (max-width:760px){
+    .key-idea-grid,
+    .objectives-grid,
+    .definition-compare{grid-template-columns:1fr;}
+  }
+
+  @media (max-width:760px){
+    .concept-layout{grid-template-columns:1fr;}
+    .pathway{grid-template-columns:1fr 1fr;}
+    .path-step:nth-child(2)::after{display:none;}
+    .gateway-title{font-size:36px;}
+    .statement-text{font-size:28px;}
+  }
+
+
+  /* ---------- WCAG 2.2 AA Accessibility Foundation ---------- */
+  .skip-link{
+    position:fixed;
+    left:16px;
+    top:12px;
+    z-index:1000;
+    padding:10px 16px;
+    border-radius:8px;
+    background:#FFFFFF;
+    color:var(--tio-navy-dark);
+    border:3px solid var(--tio-yellow);
+    font-weight:700;
+    transform:translateY(-160%);
+    transition:transform .15s ease;
+  }
+  .skip-link:focus{transform:translateY(0);}
+
+  :where(button, a, summary, textarea, audio, video):focus-visible{
+    outline:4px solid var(--tio-yellow);
+    outline-offset:3px;
+  }
+
+  .eyebrow-row,
+  .statement-label,
+  .concept-side-label,
+  .gateway-kicker{
+    color:var(--tio-teal-text);
+  }
+
+  .sec-item[aria-current="page"]{
+    background:rgba(5,138,177,.32);
+    color:#FFFFFF;
+    font-weight:700;
+  }
+
+  .sr-only{
+    position:absolute!important;
+    width:1px!important;
+    height:1px!important;
+    padding:0!important;
+    margin:-1px!important;
+    overflow:hidden!important;
+    clip:rect(0,0,0,0)!important;
+    white-space:nowrap!important;
+    border:0!important;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation-duration:.01ms!important;
+      animation-iteration-count:1!important;
+      scroll-behavior:auto!important;
+      transition-duration:.01ms!important;
+    }
+  }
+
+  /* ---------- Accessible Accordions ---------- */
+  .accordion-list{
+    display:grid;
+    gap:12px;
+    margin-top:18px;
+  }
+  details.accordion{
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:#FFFFFF;
+    overflow:hidden;
+  }
+  details.accordion[open]{
+    box-shadow:0 5px 18px rgba(34,54,69,.08);
+    border-color:rgba(0,107,143,.45);
+  }
+  details.accordion summary{
+    list-style:none;
+    cursor:pointer;
+    padding:17px 18px;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    gap:12px;
+    align-items:center;
+    min-height:58px;
+    color:var(--tio-navy);
+    font-weight:700;
+  }
+  details.accordion summary::-webkit-details-marker{display:none;}
+  details.accordion summary::after{
+    content:"+";
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--card-tint);
+    color:var(--tio-navy);
+    font-size:20px;
+    line-height:1;
+  }
+  details.accordion[open] summary::after{content:"−";}
+  .accordion-body{
+    padding:0 18px 18px;
+    border-top:1px solid var(--line);
+  }
+  .accordion-number{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--tio-navy-dark);
+    background:var(--tio-light-blue);
+    border-radius:999px;
+    padding:4px 9px;
+  }
+
+  /* ---------- Accessible reveal cards: hover, focus, click/tap ---------- */
+  .reveal-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:14px;
+    margin-top:16px;
+  }
+  .reveal-card{
+    position:relative;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:linear-gradient(145deg,#FFFFFF,var(--card-tint));
+    overflow:hidden;
+    transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  }
+  .reveal-card:hover,
+  .reveal-card:focus-within,
+  .reveal-card.is-open{
+    border-color:rgba(0,107,143,.55);
+    box-shadow:0 7px 20px rgba(34,54,69,.10);
+    transform:translateY(-2px);
+  }
+  .reveal-trigger{
+    width:100%;
+    min-height:144px;
+    border:0;
+    background:transparent;
+    color:var(--tio-navy);
+    text-align:left;
+    padding:20px;
+    cursor:pointer;
+    font:inherit;
+    display:block;
+  }
+  .reveal-trigger strong{
+    display:block;
+    font-size:17px;
+    margin-bottom:8px;
+    line-height:1.4;
+  }
+  .reveal-hint{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:var(--ink-soft);
+    font-size:13px;
+    font-weight:600;
+  }
+  .reveal-hint::after{
+    content:"+";
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:#FFFFFF;
+    border:1px solid var(--line);
+    color:var(--tio-navy);
+    font-size:17px;
+    line-height:1;
+  }
+  .reveal-card:hover .reveal-hint::after,
+  .reveal-card:focus-within .reveal-hint::after,
+  .reveal-card.is-open .reveal-hint::after{
+    content:"−";
+  }
+  .reveal-detail{
+    max-height:0;
+    opacity:0;
+    overflow:hidden;
+    padding:0 20px;
+    color:var(--ink-soft);
+    font-size:14px;
+    line-height:1.55;
+    border-top:0 solid var(--line);
+    transition:max-height .22s ease, opacity .18s ease, padding .22s ease, border-top-width .22s ease;
+  }
+  .reveal-card:hover .reveal-detail,
+  .reveal-card:focus-within .reveal-detail,
+  .reveal-card.is-open .reveal-detail{
+    max-height:180px;
+    opacity:1;
+    padding:15px 20px 20px;
+    border-top-width:1px;
+  }
+  .reveal-card:hover .reveal-trigger,
+  .reveal-card:focus-within .reveal-trigger,
+  .reveal-card.is-open .reveal-trigger{
+    min-height:auto;
+    padding-bottom:14px;
+  }
+
+  /* ---------- Balanced cards and resource layouts ---------- */
+  .objectives-grid.is-odd .objective-card:last-child{
+    grid-column:1 / -1;
+    min-height:108px;
+  }
+  .resource-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:14px;
+    margin-top:16px;
+  }
+  .resource-card{
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:linear-gradient(145deg,#FFFFFF,var(--card-tint));
+    padding:20px;
+    min-height:145px;
+  }
+  .resource-card h3{
+    margin:0 0 8px;
+    color:var(--tio-navy);
+    font-size:17px;
+  }
+  .resource-card p{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+  .certificate-panel{
+    min-height:360px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:linear-gradient(145deg,#FFFFFF,var(--card-tint));
+  }
+  .certificate-panel .certificate-mark{
+    width:86px;
+    height:86px;
+    border-radius:50%;
+    margin:0 auto 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--tio-navy);
+    color:#FFFFFF;
+    font-size:34px;
+    font-weight:800;
+  }
+
+
+  /* ---------- Certificate of Module Review ---------- */
+  .review-summary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:14px;
+    margin:18px 0 24px;
+  }
+  .review-summary-card{
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:linear-gradient(145deg,#FFFFFF,var(--card-tint));
+    padding:18px;
+    min-height:118px;
+  }
+  .review-summary-card strong{
+    display:block;
+    color:var(--tio-navy);
+    font-size:17px;
+    margin-bottom:6px;
+  }
+  .review-summary-card span{
+    color:var(--ink-soft);
+    font-size:14px;
+    line-height:1.5;
+  }
+  .certificate-form{
+    margin-top:20px;
+    padding:22px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:var(--card-tint);
+  }
+  .certificate-form label{
+    display:block;
+    color:var(--tio-navy);
+    font-weight:700;
+    margin-bottom:8px;
+  }
+  .certificate-name-input{
+    width:100%;
+    min-height:48px;
+    border:2px solid #8AA0AE;
+    border-radius:10px;
+    padding:10px 12px;
+    font:inherit;
+    color:var(--ink);
+    background:#FFFFFF;
+  }
+  .certificate-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:16px;
+  }
+  .certificate-actions .nav-btn{
+    min-height:46px;
+  }
+  .certificate-note{
+    margin-top:12px;
+    color:var(--ink-soft);
+    font-size:13.5px;
+  }
+  .certificate-preview{
+    display:none;
+    margin-top:28px;
+    border:3px solid var(--tio-navy);
+    border-radius:16px;
+    background:#FFFFFF;
+    padding:40px 34px;
+    text-align:center;
+    box-shadow:var(--shadow);
+  }
+  .certificate-preview.is-visible{display:block;}
+  .certificate-preview .cert-org{
+    font-size:17px;
+    color:var(--tio-teal-text);
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .certificate-preview h3{
+    margin:10px 0 18px;
+    font-size:34px;
+    color:var(--tio-navy);
+  }
+  .certificate-preview .cert-name{
+    font-size:30px;
+    font-weight:800;
+    color:var(--tio-navy-dark);
+    margin:20px 0 8px;
+    overflow-wrap:anywhere;
+  }
+  .certificate-preview .cert-module{
+    font-size:22px;
+    font-weight:700;
+    color:var(--tio-navy);
+    margin:10px 0 2px;
+  }
+  .certificate-preview .cert-sub{
+    color:var(--ink-soft);
+    margin-bottom:20px;
+  }
+  .certificate-preview .cert-meta{
+    display:flex;
+    justify-content:center;
+    gap:32px;
+    flex-wrap:wrap;
+    margin:22px 0;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+  .certificate-preview .cert-disclaimer{
+    margin:24px auto 0;
+    max-width:680px;
+    padding-top:18px;
+    border-top:1px solid var(--line);
+    color:var(--ink-soft);
+    font-size:13px;
+    line-height:1.5;
+  }
+
+  @media print{
+    body *{visibility:hidden!important;}
+    #certificatePreview,
+    #certificatePreview *{visibility:visible!important;}
+    #certificatePreview{
+      display:block!important;
+      position:absolute;
+      inset:0;
+      margin:0;
+      border:0;
+      border-radius:0;
+      box-shadow:none;
+      padding:44px;
+      width:100%;
+    }
+  }
+
+  .wordwall { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .wordwall span {
+    background: var(--tio-navy); color: #FFF; padding: 10px 18px;
+    border-radius: 100px 100px 4px 100px; font-size: 14.5px; font-weight: 500;
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#mainContent">Skip to module content</a>
+
+<div class="app">
+  <aside class="sidebar">
+    <div style="flex:1; min-width:0;">
+      <div class="brand-logo-wrap">
+        <img src="assets/tio-logo.png" alt="Trauma Informed Oregon Logo">
+      </div>
+
+      <div class="brand-title">Minor Consent to<br><span class="nowrap">Behavioral Health Care</span></div>
+      <div class="brand-sub">Module 1 · For Behavioral Health Care Providers</div>
+      <div class="sidebar-progress"><div class="sidebar-progress-fill" id="sideProgress"></div></div>
+      <div class="sidebar-progress-label" id="sideProgressLabel">Slide 1 of 67</div>
+    </div>
+    
+    <nav class="sections" id="sectionNav"></nav>
+
+    <div class="sidebar-footer">
+      <div>Educational resource only — not legal advice.</div><div class="reviewed-date">Content reviewed: July 29, 2026</div>
+    </div>
+  </aside>
+
+  <main id="mainContent" tabindex="-1">
+    <div class="topbar"><div class="topbar-fill" id="topFill"></div></div>
+    <div class="stage-wrap">
+      <div class="stage">
+        <div id="stage" class="slide-stage-enter" role="region" aria-live="polite" aria-atomic="true" aria-label="Current module slide"></div>
+        <div class="controls">
+          <button type="button" class="nav-btn" id="prevBtn">&larr; Back</button>
+          <span class="step-count" id="stepCount"></span>
+          <button type="button" class="nav-btn primary" id="nextBtn">Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+const MANDY_PHOTO_URL = "assets/mandy-davis.png";
+
+/* ============================================================
+   COMPLETE UNABRIDGED DATASET
+   ============================================================ */
+const DATA = [
+  // SECTION 1: GETTING STARTED (1-9)
+  { sec:"Getting Started", type:"cover", tag:"Module 1", title:"Minor Consent to <span class='nowrap'>Behavioral Health Care</span>", sub:"For Behavioral Health Care Providers", hasIntroVideo:true },
+  { sec:"Getting Started", type:"about", title:"About Trauma Informed Oregon", body:[
+    "Trauma Informed Oregon is a statewide collaborative aimed at preventing and ameliorating the impact of adverse experiences on children, adults, and families.",
+    "Trauma Informed Oregon works in partnership with providers, individuals with lived experience, and families to promote and sustain trauma informed policies and practices across physical, mental, and behavioral health systems, and to disseminate promising strategies to support wellness and resilience."
+  ]},
+  { sec:"Getting Started", type:"text", title:"How to Use This Resource", body:[
+    "This is intended to provide basic information for providers of behavioral healthcare about a young person's ability to access behavioral health care in Oregon.",
+    "You can watch this on your own, as a team or group, in a supervisory session, or include it in orientation activities.",
+    "We recognize that not all questions or situations will be answered in this module. We encourage you to share your questions with us, and we will update the FAQs. We also encourage you to explore these complexities in your teams and organizations."
+  ]},
+  { sec:"Getting Started", type:"callout", title:"Disclaimer", audioFile:"assets/audio/slide 5-7.m4a", startTime:1, endTime:19, body:[
+    "This training is for educational purposes only, and participants should follow their organization's policies and professional scope of practice when applying any information presented. This is not legal advice, nor does it replace clinical consultation and supervision needs."
+  ]},
+  { sec:"Getting Started", type:"agenda", title:"Agenda", audioFile:"assets/audio/slide 5-7.m4a", startTime:20, endTime:41, items:[
+    "Context Setting","Definitions","About Consent","About Involvement","About Disclosure","Considerations","Scenarios","In Summary","Resources"
+  ]},
+  { sec:"Getting Started", type:"stat", quote:"Mental health is a basic human right for all people. Everyone, whoever and wherever they are, has a deserving and inherent right to the highest attainable standard of mental health.", source:"World Health Organization, 2023", audioFile:"assets/audio/slide 5-7.m4a", startTime:42, endTime:62, stats:[
+    {value:"60%", label:"of Oregon's 8th and 11th graders have a positive view of their mental/emotional health (Oregon SHS, 2025)"},
+    {value:"1 in 5", label:"of 11th graders report having emotional or mental health care needs that were not met during the past year (2025)"}
+  ]},
+  { sec:"Getting Started", type:"text", title:"Minor Consent to Behavioral Health Services", audioFile:"assets/audio/slide 5-7.m4a", startTime:81, endTime:103, body:[
+    "Oregon's minor consent to behavioral health services policy is one tool for satisfying the inherent right to mental health."
+  ]},
+  { sec:"Getting Started", type:"objectives", title:"Module 1 Objectives", audioFile:"assets/audio/slide 8-9.m4a", startTime:0, endTime:34, items:[
+    "Define the age of consent for behavioral health services.",
+    "Know the difference between consent to services and disclosure of information.",
+    "Know if and when parent/guardians need to be involved in behavioral health services.",
+    "Identify when more information and consultation are needed."
+  ]},
+  { sec:"Getting Started", type:"matrix", title:"Navigating This Content", audioFile:"assets/audio/slide 8-9.m4a", startTime:34, endTime:80, questions:[
+    "How might this help?","How might this hurt?","How might identity influence impact?"
+  ], groups:["Young People","Parents/Guardians","Providers","Organizations","Peers and Natural Supports"], prompt:"Who else would you include?" },
+
+  // SECTION 2: DEFINITIONS (10-16)
+  { sec:"Definitions", type:"divider", title:"Section 1: Definitions" },
+  { sec:"Definitions", type:"definition", title:"Defining OAR and ORS", terms:[
+    {term:"OAR", def:"Oregon Administrative Rules, often called just 'Administrative Rules.' OARs are created by entities with rulemaking authority to implement or interpret their specific statutes."},
+    {term:"ORS", def:"Oregon Revised Statutes, the official collection of laws enacted by the Oregon legislative assembly or through citizen initiatives, organized systemically for reference and legal use in the state of Oregon."}
+  ]},
+  { sec:"Definitions", type:"definition", title:"Definitions", terms:[
+    {term:"Behavioral Health 'Provider'", def:"means an individual, organizational provider, or Community Mental Health Program as designated under ORS 430.637 (1)(b) that holds a current certificate to provide outpatient behavioral health treatment or prevention services pursuant to these and other applicable service delivery rules. (OAR 309-019-0105 — Definitions)"}
+  ]},
+  { sec:"Definitions", type:"definition", title:"Defining Behavioral Health, Treatment, and Outpatient Therapy", terms:[
+    {term:"Behavioral Health", def:"means mental health, mental illness, addictive health, and addiction and gambling disorders. (OAR 309-008-0200)"},
+    {term:"Behavioral Health Treatment Services", def:"means mental health treatment, substance use disorder treatment, and problem gambling treatment services. (OAR 309-008-0200)"},
+    {term:"Outpatient Therapy", def:"means medically appropriate services to an individual, and when appropriate their family or significant other, for the treatment of a behavioral health diagnosis. *Subject to change — final definition in rule will be in place 1/1/2027. (OAR 309-008)"}
+  ]},
+  { sec:"Definitions", type:"definition", title:"Defining Minor and Guardian", terms:[
+    {term:"Minor", def:"defined as someone 14 years of age or older (as it pertains to access to behavioral health care). There are exclusions for emancipated minors. (ORS 109.675) Minor is a legal term — in practice, and throughout this presentation, we use the terms young persons, youth, etc."},
+    {term:"Guardian", def:"means an individual who has been granted guardianship of a child through a judgment of the court (see OAR 413-0700: 34)."},
+    {term:"Parent", def:"means the genetic or adoptive mother and the legal parent of the child. A legal parent is a person who has adopted the child or whose parentage has been established or declared under ORS 109.065."}
+  ]},
+  { sec:"Definitions", type:"objectives", title:"Three Points of Emphasis", items:[
+    "Consent to Treatment",
+    "Parent/Guardian Involvement",
+    "Disclosure of Information / Access to Records and Documentation"
+  ]},
+  { sec:"Definitions", type:"quiz", title:"Knowledge Check: Definitions", intro:"Four questions on the terms we just covered. Pick an answer to see the explanation:", items:[
+    {q:"For the purpose of accessing behavioral health care in Oregon, a 'minor' who may consent on their own is defined as someone who is:", options:["12 years of age or older","14 years of age or older","15 years of age or older","16 years of age or older"], correct:1, why:"ORS 109.675 sets the age at 14 for outpatient mental health and substance use services. There are exclusions for emancipated minors."},
+    {q:"What is the difference between an ORS and an OAR?", options:["ORS are federal laws; OAR are Oregon laws","ORS are laws passed by the legislature or citizen initiative; OAR are rules written by agencies with rulemaking authority","ORS are agency rules; OAR are court decisions","They are two names for the same thing"], correct:1, why:"Oregon Revised Statutes are enacted by the legislative assembly. Oregon Administrative Rules are created by entities with rulemaking authority."},
+    {q:"Under the definitions used in this module, 'guardian' means:", options:["Any adult the young person lives with","A relative who provides day-to-day care","An individual granted guardianship of a child through a judgment of the court","A caseworker assigned to the young person"], correct:2, why:"Guardianship is a court determination (see OAR 413-0700: 34)."},
+    {q:"'Behavioral health' as defined in OAR 309-008-0200 includes:", options:["Mental health and mental illness only","Mental health, mental illness, addictive health, and addiction and gambling disorders","Only services delivered in a clinic setting","Any service delivered by a licensed clinician"], correct:1, why:"The definition is broad: mental health, mental illness, addictive health, and addiction and gambling disorders."}
+  ]},
+
+  // SECTION 3: ABOUT CONSENT (17-30)
+  { sec:"About Consent", type:"divider", title:"About Consent" },
+  { sec:"About Consent", type:"text", eyebrow:"CONSENT", title:"Consent, Defined", body:[
+    "Consent is giving permission to receive a service. In the helping professions the consent process is expected to be:"
+  ], list:[
+    "Voluntary: without coercion, intimidation or pressure",
+    "Informed: the person understands the purpose, risks, benefits, and limitations of the services",
+    "Provided in a method that is aligned with how the person receives information",
+    "Reversible"
+  ], extra:["Please consult your professional organizations and agency for more details about the consent process."] },
+  { sec:"About Consent", type:"text", eyebrow:"CONSENT", title:"Who, What and When?", audioFile:"assets/audio/slide 18-21.m4a", startTime:0, endTime:31, body:[], list:[
+    "Medical / Dental: Minors 15+ can consent to medical & dental services administered by specific licensed providers without parent/guardian consent. (ORS 109.640)",
+    "Reproductive Health: Minors of any age can access reproductive health care services & information without parent/guardian consent. (ORS 109.640)",
+    "Behavioral Health: A minor who is 14+ may access outpatient mental health & substance use services without parent/guardian consent. (ORS 109.675)"
+  ]},
+  { sec:"About Consent", type:"text", eyebrow:"CONSENT", title:"Behavioral Health Focus", audioFile:"assets/audio/slide 18-21.m4a", startTime:31, endTime:95, body:[], list:[
+    "A minor who is 14+ may access outpatient mental health & substance use services without parent/guardian consent (ORS 109.675).",
+    "A parent/guardian can still consent to behavioral health care on behalf of a youth, even if the youth refuses.",
+    "Providers are required to involve parent/guardian in the minor's care, prior to the end of services, unless there are clear and documented clinical reasons."
+  ]},
+  { sec:"About Consent", type:"text", eyebrow:"CONSENT", title:"Increasing Access", audioFile:"assets/audio/slide 18-21.m4a", startTime:95, endTime:111, body:[
+    "This law is intended to increase access to behavioral health care — a basic human right."
+  ]},
+  { sec:"About Consent", type:"faq", eyebrow:"CONSENT", title:"Outpatient Services FAQ", audioFile:"assets/audio/slide 18-21.m4a", startTime:111, endTime:151, q:"What are outpatient services? Am I doing outpatient services?", a:[
+    "Outpatient therapy means medically appropriate services to an individual, and when appropriate their family, for the treatment of a behavioral health diagnosis. (OAR 309-008)",
+    "Methadone treatment, even if outpatient, is not covered under minor consent to behavioral healthcare.",
+    "If you are unsure, ask your organization."
+  ]},
+  { sec:"About Consent", type:"reflection", eyebrow:"CONSENT", title:"Reflecting on Minors (Pt. 1)", prompt:"In one minute, write down situations where it might be helpful for a young person to access care without needing a parent or guardian's consent.", hints:[
+    "A parent/guardian is not available due to work, location, or doesn't feel safe engaging.",
+    "A young person does not want to burden their parent/guardian.",
+    "A young person is practicing developmentally appropriate independence."
+  ]},
+  { sec:"About Consent", type:"reflection", eyebrow:"CONSENT", title:"Reflecting on Minors (Pt. 2)", prompt:"In one minute, write down situations where it might be helpful for a young person to access care without needing a guardian's consent.", hints:[
+    "The guardian does not read or understand the language in which services are provided.",
+    "It would be unsafe to the young person if the guardian found out.",
+    "The young person is unaware of the benefit of involving their guardian."
+  ]},
+  { sec:"About Consent", type:"reflection", eyebrow:"CONSENT", title:"Reflecting on Guardians (Pt. 1)", prompt:"In one minute, write down situations where a parent/guardian wants services but a minor does not.", hints:[
+    "The parent/guardian knows the value of therapy from personal experience.",
+    "The parent/guardian is scared for their young person's safety.",
+    "The young person is worried about peer stigma."
+  ]},
+  { sec:"About Consent", type:"reflection", eyebrow:"CONSENT", title:"Reflecting on Guardians (Pt. 2)", prompt:"In one minute, write down situations where a parent/guardian wants services but a minor does not.", hints:[
+    "The minor feels they are ok and these particular services are not what they need.",
+    "The young person is experiencing severe enough symptoms that they are not aware of the need.",
+    "The guardians have not been taught about typical adolescent development."
+  ]},
+  { sec:"About Consent", type:"reflection", eyebrow:"CONSENT", title:"What Are Your Thoughts?", audioFile:"assets/audio/slide 26.m4a", prompt:"Young people being able to access behavioral health services is important because…?" },
+  { sec:"About Consent", type:"wordwall", eyebrow:"CONSENT", title:"How a Youth Might Say 'No'", audioFile:"assets/audio/slide 27.m4a", items:[
+    "This is sus","I am not going!","I am not having a menty b — so no","Hot take, still no","My side-eye is my answer","I am not going"
+  ]},
+  { sec:"About Consent", type:"objectives", eyebrow:"CONSENT", title:"What Can You Do with a 'No'?", items:[
+    "Honor that the young person knows what they need.",
+    "Offer services to the parents/guardians.",
+    "Offer to have a few meetings with everyone to figure out what would be helpful.",
+    "Offer to meet with the young person for 2–3 sessions to see if they are interested.",
+    "Connect the minor with peer support services."
+  ]},
+  { sec:"About Consent", type:"objectives", title:"What Can You Do with a 'No'? (continued)", items:[
+    "Invite the young person to visit the site or offer different places for services.",
+    "Evaluate if spaces, places and processes are youth centered.",
+    "Assist in any planning or supports while the youth is deciding what to do."
+  ]},
+  { sec:"About Consent", type:"text", eyebrow:"CONSENT", title:"Guardians Can Consent to Services", body:[
+    "Take extra care: Oregon law does allow parents/guardians to consent to services for youth under age 18. They can do this without the youth's consent, particularly when young children cannot give informed consent or when intensive residential services are required for safety."
+  ]},
+  { sec:"About Consent", type:"quiz", title:"Knowledge Check: Consent", intro:"Check your understanding of minor consent principles:", items:[
+    {q:"A 14-year-old asks to start outpatient therapy and does not want their parents told. Under ORS 109.675, can they consent on their own?", options:["Yes — a minor 14 or older may access outpatient mental health services without parent consent","No — they must be 15","No — a parent must always co-sign","Only with a court order"], correct:0, why:"A minor 14 or older may consent to outpatient mental health and substance use services under ORS 109.675."},
+    {q:"Which of these is NOT one of the qualities of a good consent process?", options:["Voluntary — without coercion","Informed — person understands purpose and risks","Permanent — once given, it cannot be withdrawn","Reversible — can be withdrawn at any point"], correct:2, why:"Consent is reversible. A person can withdraw consent at any point."},
+    {q:"A parent wants their 16-year-old in therapy. The youth says no. What does Oregon law allow?", options:["Nothing can happen without the youth's agreement","The parent/guardian can consent to behavioral health care on the youth's behalf","The provider must refuse the referral","The youth must be emancipated"], correct:1, why:"Oregon law allows a parent/guardian to consent to services for youth under 18."}
+  ]},
+
+  // SECTION 4: ABOUT INVOLVEMENT (31-40)
+  { sec:"About Involvement", type:"divider", title:"Section 3: About Involvement" },
+  { sec:"About Involvement", type:"text", eyebrow:"INVOLVEMENT", title:"Providers Must Involve Guardians", audioFile:"assets/audio/slide 32-36.m4a", startTime:0, endTime:35, body:[
+    "Providers are required to involve the parent/guardian in the minor's care, prior to the end of services, unless there are clear and documented clinical reasons."
+  ]},
+  { sec:"About Involvement", type:"faq", eyebrow:"INVOLVEMENT", title:"Involvement FAQ", audioFile:"assets/audio/slide 32-36.m4a", startTime:35, endTime:73, qList:[
+    "What does 'involve' mean?",
+    "What is sufficient to meet involvement standards?",
+    "What does 'prior to the end of services' mean?",
+    "What are 'clinical reasons'?"
+  ], a:["Following are key considerations and clinical guidance for these questions."] },
+  { sec:"About Involvement", type:"text", eyebrow:"INVOLVEMENT", title:"Involvement Is Best Practice", audioFile:"assets/audio/slide 32-36.m4a", startTime:73, endTime:107, body:[
+    "Involve parents/guardians of youth who are receiving behavioral health services whenever safely possible."
+  ]},
+  { sec:"About Involvement", type:"text", eyebrow:"INVOLVEMENT", title:"You Are Not Alone", audioFile:"assets/audio/slide 32-36.m4a", startTime:107, endTime:123, body:[
+    "Much of our work is grounded in honoring and working with complexity. Utilize supervision, peer consultation, and organizational policies."
+  ]},
+  { sec:"About Involvement", type:"text", eyebrow:"INVOLVEMENT", title:"The Work", audioFile:"assets/audio/slide 32-36.m4a", startTime:123, endTime:155, body:[
+    "How we do the work is the work."
+  ]},
+  { sec:"About Involvement", type:"objectives", eyebrow:"INVOLVEMENT", title:"Centering Safety and Care", items:[
+    "Center safety and care in decisions involving parents/guardians.",
+    "Consult with the young person, your supervisor, and your organization's policies."
+  ], extraList:{h:"Involvement is not necessary when:", items:["Parents refuse","It is clinically contraindicated","The minor was abused by the guardians (including exposure to domestic violence)"]} },
+  { sec:"About Involvement", type:"reflection", eyebrow:"INVOLVEMENT", title:"Pause and Reflect", prompt:"What are examples of 'clinically contraindicated' in your practice environment?" },
+  { sec:"About Involvement", type:"objectives", eyebrow:"INVOLVEMENT", title:"Involvement in Practice", items:[
+    "Including everyone in family therapy.",
+    "Parents/guardians attending designated portions of sessions.",
+    "The young person leading a shared meeting.",
+    "Sharing a collaborative letter created with the young person."
+  ]},
+  { sec:"About Involvement", type:"quiz", title:"Knowledge Check: Involvement", intro:"Questions on parent and guardian involvement:", items:[
+    {q:"When are providers required to involve a parent or guardian in a minor's care?", options:["At the first session always","Before the end of services, unless there are clear and documented clinical reasons","Only if the youth asks","Only when medication is prescribed"], correct:1, why:"ORS 109.675 requires involvement prior to the end of services unless clinically contraindicated."},
+    {q:"Which of these is a situation where involvement is NOT required?", options:["The youth is over 16","It is clinically contraindicated or the minor was abused by the guardians","The provider is busy","The guardian lives in another city"], correct:1, why:"Exceptions include parent refusal, clinical contraindication, or abuse history."}
+  ]},
+
+  // SECTION 5: ABOUT DISCLOSURE (41-50)
+  { sec:"About Disclosure", type:"divider", title:"Section 4: About Disclosure" },
+  { sec:"About Disclosure", type:"definition", eyebrow:"DISCLOSURE", title:"Disclosure, Defined", audioFile:"assets/audio/slide 41-45.m4a", startTime:0, endTime:22, terms:[
+    {term:"Disclosure", def:"is sharing 'relevant information regarding the minor's diagnosis and treatment to the minor's parent or legal guardian…' (ORS 109.680)"}
+  ]},
+  { sec:"About Disclosure", type:"reflection", eyebrow:"DISCLOSURE", title:"Disclosure vs. Confidentiality", audioFile:"assets/audio/slide 41-45.m4a", startTime:22, endTime:43, prompt:"How do you understand the difference between disclosure and confidentiality?" },
+  { sec:"About Disclosure", type:"objectives", eyebrow:"DISCLOSURE", title:"When Disclosure Is Not Required", audioFile:"assets/audio/slide 41-45.m4a", startTime:43, endTime:88, items:[
+    "Reasonably believing the individual abused or neglected the minor.",
+    "Reasonably believing disclosure could endanger the minor.",
+    "Determining it is not in the minor's best interest.",
+    "The minor has emancipated or separated from the parent for at least 90 days."
+  ]},
+  { sec:"About Disclosure", type:"objectives", eyebrow:"DISCLOSURE", title:"When Disclosure Is Required", audioFile:"assets/audio/slide 41-45.m4a", startTime:88, endTime:115, items:[
+    "It is clinically appropriate and in the minor's best interests.",
+    "The minor must be admitted to a detoxification program.",
+    "The minor is at risk of suicide (ORS 109.680, HB 3139-2021)."
+  ]},
+  { sec:"About Disclosure", type:"text", eyebrow:"DISCLOSURE", title:"Substance Use Disorder Treatment", audioFile:"assets/audio/slide 41-45.m4a", startTime:115, endTime:125, body:[
+    "Federal law governing the confidentiality of drug and alcohol records (42 CFR 2.14(a)) specifies that if a youth has consented to their own treatment under state law, the youth must consent to disclosure of those records."
+  ]},
+  { sec:"About Disclosure", type:"text", eyebrow:"DISCLOSURE", title:"Disclosure Requires Unique Consent", body:[
+    "Consent to disclosure is a separate consent process required in addition to consent to behavioral health services."
+  ]},
+  { sec:"About Disclosure", type:"objectives", eyebrow:"DISCLOSURE", title:"Disclosure Best Practices", items:[
+    "Talk openly and often about who can consent to what type of care.",
+    "Provide information about consent in multiple languages and formats.",
+    "Assess how inclusive your consent processes are.",
+    "Involve youth and guardians as much as is safe."
+  ]},
+  { sec:"About Disclosure", type:"reflection", eyebrow:"DISCLOSURE", title:"How Can Guardians Know?", audioFile:"assets/audio/slide 49.m4a", prompt:"What are ways a parent/guardian could learn about care being provided?", hints:[
+    "The young person lets them know directly.",
+    "The provider deems it necessary to tell them.",
+    "The services show up on insurance billing."
+  ]},
+  { sec:"About Disclosure", type:"quiz", title:"Knowledge Check: Disclosure", intro:"Four questions on disclosure rules:", items:[
+    {q:"A young person consented to their own treatment. Does that automatically allow their guardian to access records?", options:["Yes — consent to treatment covers records","No — consent to disclosure is a separate consent","Yes, for billing only","Only with court order"], correct:1, why:"Consent to treatment and consent to disclosure are separate legal determinations."},
+    {q:"Which of these requires disclosure regardless of the young person's consent?", options:["The minor misses two sessions","The minor must be admitted to a detox program or is at risk of suicide","The guardian asks for clinical notes","The youth changes schools"], correct:1, why:"Detox admission and suicide risk require disclosure under ORS 109.680."}
+  ]},
+
+  // SECTION 6: CONSIDERATIONS (51-52)
+  { sec:"Considerations", type:"divider", title:"Section 5: Considerations" },
+  { sec:"Considerations", type:"objectives", eyebrow:"DISCLOSURE", title:"Disclosure Considerations", audioFile:"assets/audio/slide 51.m4a", items:[
+    "Consider how decisions harm or help, and for whom.",
+    "Strive to increase access to care as a developmental milestone.",
+    "Consult with youth, families, colleagues, and supervisors.",
+    "Document what was done and why."
+  ]},
+
+  // SECTION 7: SCENARIOS (53-57)
+  { sec:"Scenarios", type:"divider", title:"Section 6: Scenarios" },
+  { sec:"Scenarios", type:"scenario", title:"Scenario 1: 14-Year-Old Outpatient Therapy", text:"A 14-year-old initiates outpatient therapy at school for depression and moderate ideation without plan. They do not want parents involved.", qa:[
+    {q:"Can the 14-year-old consent?", a:"Yes. Outpatient behavioral health care at 14+ is covered under ORS 109.675."},
+    {q:"Do you need to involve parents?", a:"Yes, before the end of treatment, unless clinically contraindicated and documented."}
+  ]},
+  { sec:"Scenarios", type:"scenario", title:"Scenario 2: 16-Year-Old Refusing Intake", text:"Parents bring a 16-year-old to intake after grades drop. The youth remains silent and refuses care.", qa:[
+    {q:"Can you see this minor?", a:"Parents can legally consent for youth under 18, but engagement and rapport building are essential."},
+    {q:"Best practices?", a:"Offer 2–3 low-pressure sessions, offer parent support, or connect to peer services."}
+  ]},
+  { sec:"Scenarios", type:"scenario", title:"Scenario 3: Residential Treatment", text:"A legal guardian brings a 14-year-old with severe trauma to residential treatment.", qa:[
+    {q:"Who must consent?", a:"Guardian consent is mandatory for residential treatment in Oregon."}
+  ]},
+  { sec:"Scenarios", type:"scenario", title:"Scenario 4: Psychiatric Evaluation", text:"A 14-year-old seeks psychiatric care for severe anxiety without telling parents.", qa:[
+    {q:"Can the psychiatrist evaluate and prescribe?", a:"Yes, outpatient care at 14+ includes psychiatric services, though family involvement remains best practice when safe."}
+  ]},
+
+  // SECTION 8: IN SUMMARY (58-63)
+  { sec:"In Summary", type:"divider", title:"Section 7: In Summary" },
+  { sec:"In Summary", type:"truefalse", title:"Summary: True or False", qa:[
+    {q:"Can an outpatient clinic refuse service to a minor solely because they consented on their own?", correct:1, a:"No. Minor consent under ORS 109.675 is valid legal consent."},
+    {q:"Is consent to treatment the same as consent to release records?", correct:1, a:"No. They are separate consents under Oregon law and federal rules."},
+    {q:"Is involving parents/guardians best clinical practice when safe?", correct:0, a:"Yes. Family involvement strongly supports long-term youth wellness."}
+  ]},
+  { sec:"In Summary", type:"objectives", title:"Where to Seek More Help", items:[
+    "Your clinical supervisor",
+    "Organizational policies & procedures",
+    "Professional licensing boards",
+    "Legal counsel"
+  ]},
+  { sec:"In Summary", type:"closing", quote:"Mental health is a basic human right for all people. Everyone, whoever and wherever they are, has a deserving and inherent right to the highest attainable standard of mental health.", title:"Thank You For All You Do" },
+
+  // SECTION 9: RESOURCES & DOWNLOADS (64-68)
+  { sec:"Resources", type:"citations", title:"Citations & References", items:[
+    "Mental health: Promoting and protecting human rights. World Health Organization, 2023.",
+    "Oregon Revised Statutes (ORS 109.675, ORS 109.680, ORS 109.640).",
+    "Oregon Administrative Rules (OAR 309-019-0105, OAR 309-008-0200)."
+  ]},
+  { sec:"Resources", type:"resources", title:"Key Resources", items:[
+    {title:"Trauma Informed Oregon Resource Library", desc:"Explore trauma-informed implementation, youth engagement, family support, and practice resources.", url:"https://traumainformedoregon.org/"},
+    {title:"Understanding Minor Consent and Confidentiality in Health Care in Oregon", desc:"Oregon Health Authority guidance for providers and communities.", url:"https://www.oregon.gov/oha/PH/HEALTHYPEOPLEFAMILIES/YOUTH/Pages/Resources.aspx"},
+    {title:"OHA Minor Consent for Behavioral Health Services Memo", desc:"Oregon Health Authority clarification for licensed and certified behavioral health providers.", url:"https://www.oregon.gov/oha/HSD/BH-Child-Family/Documents/Minor%20Consent%20Memo.pdf"}
+  ]},
+  { sec:"Resources", type:"downloads", title:"Tipsheets & Downloads", items:[
+    {title:"Who Can Consent to What — Quick Reference", desc:"Summary sheet comparing medical, reproductive, and behavioral health consent ages.", file:"resources/who-can-consent.html"},
+    {title:"Involvement Decision Guide", desc:"Decision pathway and documentation prompts for parent or guardian involvement.", file:"resources/involvement-decision-guide.html"}
+  ]},
+  { sec:"Resources", type:"certificate", title:"Certificate of Completion" }
+];
+
+function renderIntroVideo() {
+  return `
+    <div class="intro-video-card">
+      <h3>Training Introduction</h3>
+      <p>Watch the introduction video below:</p>
+      <video class="intro-video-element" controls preload="none" playsinline poster="assets/tio-video-poster.png" aria-label="Minor Consent training introduction with Mandy Davis">
+        <source src="assets/tio-opening-video.mp4" type="video/mp4">
+        Your browser does not support HTML video playback.
+      </video>
+      <details class="transcript-disclosure">
+        <summary>Read video transcript</summary>
+        <div class="transcript-content">
+          <p><strong>Welcome to Minor Consent to Behavioral Health Care.</strong></p>
+          <p>A trauma-informed learning module presented by Mandy Davis, PhD, LCSW, Director of Trauma Informed Oregon.</p>
+          <p><strong>Move through the module at your own pace.</strong> Pause, revisit, and focus on what is most useful to your role.</p>
+        </div>
+      </details>
+    </div>
+  `;
+}
+
+
+function escapeTextAlternative(value) {
+  return String(value ?? "")
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+function buildSlideTextAlternative(slide) {
+  const parts = [];
+  if (slide.title) parts.push(`<p><strong>${escapeTextAlternative(slide.title)}</strong></p>`);
+  (slide.body || []).forEach(item => parts.push(`<p>${escapeTextAlternative(item)}</p>`));
+  if (slide.quote) parts.push(`<p>“${escapeTextAlternative(slide.quote)}”</p>`);
+  if (slide.source) parts.push(`<p>${escapeTextAlternative(slide.source)}</p>`);
+  const listItems = [].concat(slide.list || []).concat((slide.items || []).filter(item => typeof item === "string"));
+  if (listItems.length) parts.push(`<ul>${listItems.map(item => `<li>${escapeTextAlternative(item)}</li>`).join("")}</ul>`);
+  if (slide.q) parts.push(`<p><strong>Question:</strong> ${escapeTextAlternative(slide.q)}</p>`);
+  (slide.qList || []).forEach(item => parts.push(`<p>${escapeTextAlternative(item)}</p>`));
+  (slide.a || []).forEach(item => parts.push(`<p>${escapeTextAlternative(item)}</p>`));
+  if (slide.prompt) parts.push(`<p><strong>Reflection prompt:</strong> ${escapeTextAlternative(slide.prompt)}</p>`);
+  (slide.hints || []).forEach(item => parts.push(`<p>${escapeTextAlternative(item)}</p>`));
+  if (!parts.length) parts.push("<p>The on-screen content is the accessible text for this slide.</p>");
+  return `<details class="transcript-disclosure"><summary>Read text alternative</summary><div class="transcript-content">${parts.join("")}<p class="transcript-note">This reflects the on-screen content. Replace it with a verbatim narration transcript when the final transcript is available.</p></div></details>`;
+}
+
+const AUDIO_FILE_ALIASES = {
+  "assets/audio/slide 5-7.m4a": [
+    "assets/audio/slide 5-7.m4a",
+    "assets/audio/slides 5-7.m4a",
+    "assets/audio/slide 5-7.mp4"
+  ],
+  "assets/audio/slide 8-9.m4a": [
+    "assets/audio/slide 8-9.m4a",
+    "assets/audio/slides 8-9.m4a",
+    "assets/audio/slide 8-9.mp4"
+  ],
+  "assets/audio/slide 18-21.m4a": [
+    "assets/audio/slide 18-21.m4a",
+    "assets/audio/slie 18-21.m4a",
+    "assets/audio/slide 19-22.m4a",
+    "assets/audio/slides 18-21.m4a",
+    "assets/audio/slide 18-21.mp4",
+    "assets/audio/slide 19-22.mp4"
+  ],
+  "assets/audio/slide 26.m4a": [
+    "assets/audio/slide 26.m4a",
+    "assets/audio/slides 26.m4a",
+    "assets/audio/slide 26.mp4"
+  ],
+  "assets/audio/slide 27.m4a": [
+    "assets/audio/slide 27.m4a",
+    "assets/audio/slides 27.m4a",
+    "assets/audio/slide 27.mp4"
+  ],
+  "assets/audio/slide 32-36.m4a": [
+    "assets/audio/slide 32-36.m4a",
+    "assets/audio/slide 32-26.m4a",
+    "assets/audio/slides 32-36.m4a",
+    "assets/audio/slide 32-36.mp4",
+    "assets/audio/slide 32-26.mp4"
+  ],
+  "assets/audio/slide 41-45.m4a": [
+    "assets/audio/slide 41-45.m4a",
+    "assets/audio/slides 41-45.m4a",
+    "assets/audio/slide 41-45.mp4"
+  ],
+  "assets/audio/slide 49.m4a": [
+    "assets/audio/slide 49.m4a",
+    "assets/audio/slides 49.m4a",
+    "assets/audio/slide 49.mp4"
+  ],
+  "assets/audio/slide 51.m4a": [
+    "assets/audio/slide 51.m4a",
+    "assets/audio/slides 51.m4a",
+    "assets/audio/slide 51.mp4"
+  ]
+};
+
+function renderAudio(fileName, startTime, endTime, slide) {
+  if (!fileName) return "";
+
+  const files = AUDIO_FILE_ALIASES[fileName] || [
+    fileName,
+    fileName.endsWith(".m4a") ? fileName.replace(".m4a", ".mp4") : fileName
+  ];
+
+  const dataStart = Number.isFinite(startTime) ? ` data-start="${startTime}"` : "";
+  const dataEnd = Number.isFinite(endTime) ? ` data-end="${endTime}"` : "";
+
+  const sources = files.map(file => {
+    const type = file.toLowerCase().endsWith(".mp4") ? "audio/mp4" : "audio/mp4";
+    return `<source src="${file}" type="${type}">`;
+  }).join("");
+
+  return `
+    <div class="audio-player-container">
+      <audio
+        class="slide-narration"
+        controls
+        preload="metadata"
+        aria-label="Narration for this slide"
+        ${dataStart}${dataEnd}>
+        ${sources}
+        Your browser does not support audio playback.
+      </audio>
+      <div class="audio-status" role="status" aria-live="polite"></div>
+      ${buildSlideTextAlternative(slide || {})}
+    </div>
+  `;
+}
+
+
+const SECTION_VISUALS = {
+  "Definitions": {
+    number:"01",
+    preview:"Build a shared language before applying the law.",
+    chips:["OAR","ORS","Minor, Parent & Guardian"]
+  },
+  "About Consent": {
+    number:"02",
+    preview:"Clarify who may authorize services, when, and under what conditions.",
+    chips:["Permission","Age","Voluntary & Informed"]
+  },
+  "About Involvement": {
+    number:"03",
+    preview:"Consider when and how parents or guardians participate in care.",
+    chips:["Safety","Clinical Judgment","Documentation"]
+  },
+  "About Disclosure": {
+    number:"04",
+    preview:"Separate consent to services from consent to share information.",
+    chips:["Records","Confidentiality","Best Interests"]
+  },
+  "Considerations": {
+    number:"05",
+    preview:"Apply the law with attention to impact, access, and clinical context.",
+    chips:["Help & Harm","Identity","Consultation"]
+  },
+  "Scenarios": {
+    number:"06",
+    preview:"Practice applying consent, involvement, and disclosure principles.",
+    chips:["Apply","Discuss","Document"]
+  },
+  "In Summary": {
+    number:"07",
+    preview:"Pull the major ideas together and identify where to seek support.",
+    chips:["Review","Consult","Next Steps"]
+  }
+};
+
+const SHORT_SLIDE_VISUALS = {
+  "Minor Consent to Behavioral Health Services": {
+    label:"Key idea",
+    tags:["Access","Choice","Timely support"]
+  },
+  "Increasing Access": {
+    label:"Why this matters",
+    tags:["Access","Human rights","Earlier support"]
+  },
+  "Providers Must Involve Guardians": {
+    label:"Practice requirement",
+    tags:["Before services end","Clinical reasons","Document"]
+  },
+  "Involvement Is Best Practice": {
+    label:"Practice lens",
+    tags:["Safe when possible","Youth-centered","Collaborative"]
+  },
+  "You Are Not Alone": {
+    label:"Use your supports",
+    tags:["Supervision","Peer consultation","Organizational policy"]
+  },
+  "The Work": {
+    label:"Core principle",
+    tags:["Process","Relationship","Impact"]
+  },
+  "Disclosure Requires Unique Consent": {
+    label:"Keep these separate",
+    tags:["Treatment consent","Disclosure consent","Records"]
+  }
+};
+
+function renderConceptTable(slide){
+  if (slide.title === "Who, What and When?") {
+    return `
+      <table class="comparison-table" aria-label="Consent age comparison">
+        <thead>
+          <tr><th>Service type</th><th>Age or condition</th><th>Key point</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Medical / Dental</strong></td><td>15+</td><td>May consent to services from specified licensed providers without parent or guardian consent.</td></tr>
+          <tr><td><strong>Reproductive Health</strong></td><td>Any age</td><td>May access reproductive health care services and information.</td></tr>
+          <tr><td><strong>Behavioral Health</strong></td><td>14+</td><td>May access outpatient mental health and substance use services.</td></tr>
+        </tbody>
+      </table>`;
+  }
+  if (slide.title === "Defining OAR and ORS") {
+    return `
+      <div class="definition-compare" aria-label="Comparison of Oregon statutes and administrative rules">
+        <div class="definition-compare-card">
+          <div class="abbr">ORS</div>
+          <h3>Oregon Revised Statutes</h3>
+          <p>Official laws enacted by the Oregon Legislative Assembly or through citizen initiatives.</p>
+        </div>
+        <div class="definition-compare-card">
+          <div class="abbr">OAR</div>
+          <h3>Oregon Administrative Rules</h3>
+          <p>Rules created by authorized entities to implement or interpret specific statutes.</p>
+        </div>
+      </div>
+      <div class="definition-bottom-note">
+        <strong>Quick distinction:</strong> ORS establishes the law. OAR explains how authorized agencies implement or interpret it.
+      </div>`;
+  }
+  return "";
+}
+
+function render(slide){
+  let eyebrow = `<div class="eyebrow-row mono">${slide.sec}<span class="pos">${current+1} / ${DATA.length}</span></div>`;
+  let audioPlayer = renderAudio(slide.audioFile, slide.startTime, slide.endTime, slide);
+
+  // Cover Slide
+  if (slide.type === "cover") {
+    return `<div class="cover">
+      <span class="module-tag mono">${slide.tag}</span>
+      <h1>${slide.title}</h1>
+      <div class="sub">${slide.sub}</div>
+      ${slide.hasIntroVideo ? renderIntroVideo() : ''}
+    </div>`;
+  }
+
+  // Slide 2 ("About Trauma Informed Oregon")
+  if (slide.type === "about") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      ${(slide.body||[]).map(p=>`<p>${p}</p>`).join("")}
+      
+      <div class="trainer-profile-card">
+        <img src="${MANDY_PHOTO_URL}" alt="Mandy Davis, PhD, LCSW" class="trainer-avatar">
+        <div class="trainer-info">
+          <h4>Mandy Davis, PhD, LCSW</h4>
+          <div class="role">Instructor &amp; Primary Facilitator</div>
+          <div class="org">Director, Trauma Informed Oregon</div>
+        </div>
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Matrix Slide (Navigating This Content)
+  if (slide.type === "matrix") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      <div class="matrix-box">
+        <div class="matrix-q-list">
+          <h4>Reflective Questions to Consider:</h4>
+          <ul>
+            ${(slide.questions||[]).map(q=>`<li>${q}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="matrix-groups-title">Consider Impact Across Groups:</div>
+        <div class="matrix-group-chips">
+          ${(slide.groups||[]).map(g=>`<span class="matrix-chip">${g}</span>`).join("")}
+        </div>
+        <div style="margin-top:16px;">
+          <label style="font-weight:600; color:var(--tio-navy); font-size:14.5px;">${slide.prompt||''}</label>
+          <textarea class="notes" data-reflection-key="${reflectionKeyForSlide(slide)}" placeholder="Type custom groups or notes here..."></textarea>
+        </div>
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Disclaimer / Callout Slide
+  if (slide.type === "callout") {
+    return eyebrow + `<div class="card callout">
+      <h2 class="slide-title">${slide.title}</h2>
+      ${(slide.body||[]).map(p=>`<p>${p}</p>`).join("")}
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Divider Slides
+  if (slide.type === "divider") {
+    const visual = SECTION_VISUALS[slide.sec] || {
+      number:"",
+      preview:"A focused section of the learning module.",
+      chips:[]
+    };
+    return `<div class="section-gateway">
+      <div class="gateway-number" aria-hidden="true">${visual.number}</div>
+      <div class="gateway-content">
+        <div class="gateway-kicker">${slide.sec}</div>
+        <h2 class="gateway-title">${slide.title}</h2>
+        <div class="gateway-preview">${visual.preview}</div>
+        <div class="gateway-chips">
+          ${visual.chips.map(c=>`<span class="gateway-chip">${c}</span>`).join("")}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // Agenda Slide
+  if (slide.type === "agenda") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      <ol class="agenda-list" style="padding-left:20px;">
+        ${(slide.items||[]).map(i=>`<li style="font-size:16px; margin-bottom:8px; color:var(--ink);">${i}</li>`).join("")}
+      </ol>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Stat / Quote Slide
+  if (slide.type === "stat") {
+    return eyebrow + `<div class="card">
+      <blockquote style="font-size:18px; font-style:italic; color:var(--tio-navy); border-left:4px solid var(--tio-teal); padding-left:16px; margin:0 0 16px;">
+        "${slide.quote}"
+        <cite style="display:block; font-size:13px; font-style:normal; margin-top:6px; color:var(--ink-faint);">— ${slide.source}</cite>
+      </blockquote>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px;">
+        ${(slide.stats||[]).map(s=>`
+          <div style="background:var(--card-tint); padding:16px; border-radius:10px; border:1px solid var(--line);">
+            <div style="font-size:28px; font-weight:800; color:var(--tio-teal);">${s.value}</div>
+            <div style="font-size:13px; color:var(--ink-soft);">${s.label}</div>
+          </div>
+        `).join("")}
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+
+  // Three Points of Emphasis: accessible reveal cards
+  if (slide.type === "objectives" && slide.title === "Three Points of Emphasis") {
+    const details = [
+      {title:"Consent to Treatment", detail:"Who may authorize behavioral health services?"},
+      {title:"Parent/Guardian Involvement", detail:"Who participates in care, when, and under what circumstances?"},
+      {title:"Disclosure of Information / Access to Records and Documentation", detail:"Who may receive information, records, or documentation?"}
+    ];
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title" tabindex="-1">${slide.title}</h2>
+      <p style="color:var(--ink-soft); margin:0;">Hover, use the Tab key, or select a card to see the guiding question.</p>
+      <div class="reveal-grid">
+        ${details.map((item,idx)=>`
+          <div class="reveal-card">
+            <button
+              type="button"
+              class="reveal-trigger"
+              aria-expanded="false"
+              aria-controls="reveal-detail-${idx}"
+              onclick="toggleReveal(this)">
+              <strong><span class="objective-number" style="display:inline-flex; margin-right:10px;">${String(idx+1).padStart(2,'0')}</span>${item.title}</strong>
+              <span class="reveal-hint">Hover, focus, or select to view</span>
+            </button>
+            <div class="reveal-detail" id="reveal-detail-${idx}">${item.detail}</div>
+          </div>
+        `).join("")}
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Objectives List
+  if (slide.type === "objectives") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      <div class="objectives-grid ${(slide.items||[]).length % 2 ? 'is-odd' : ''}">
+        ${(slide.items||[]).map((i,idx)=>`
+          <div class="objective-card">
+            <div class="objective-number">${String(idx+1).padStart(2,'0')}</div>
+            <div class="objective-text">${i}</div>
+          </div>
+        `).join("")}
+      </div>
+      ${slide.extraList ? `
+        <div style="margin-top:20px; background:var(--card-tint); padding:16px; border-radius:10px;">
+          <strong style="color:var(--tio-navy);">${slide.extraList.h}</strong>
+          <ul style="padding-left:20px; margin-top:8px;">
+            ${slide.extraList.items.map(e=>`<li style="font-size:14.5px;">${e}</li>`).join("")}
+          </ul>
+        </div>
+      ` : ''}
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Definition Cards
+  if (slide.type === "definition") {
+    const table = renderConceptTable(slide);
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      ${table || `<div>
+        ${(slide.terms||[]).map(t=>`
+          <div class="def-item">
+            <div class="def-term">${t.term}</div>
+            <div class="def-text">${t.def}</div>
+          </div>
+        `).join("")}
+      </div>`}
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // FAQ Cards: accessible accordion
+  if (slide.type === "faq") {
+    const questions = slide.qList || (slide.q ? [slide.q] : []);
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title" tabindex="-1">${slide.title}</h2>
+      <div class="accordion-list">
+        ${questions.map((q,idx)=>`
+          <details class="accordion" ${idx===0 ? 'open' : ''}>
+            <summary>
+              <span class="accordion-number">${String(idx+1).padStart(2,'0')}</span>
+              <span>${q}</span>
+              <span class="sr-only">Expand or collapse answer</span>
+            </summary>
+            <div class="accordion-body">
+              ${(slide.a||[]).map(ans=>`<p>${ans}</p>`).join("")}
+            </div>
+          </details>
+        `).join("")}
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Quiz Cards: accessible accordion, one question at a time
+  if (slide.type === "quiz") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title" tabindex="-1">${slide.title}</h2>
+      <div class="quiz-intro">${slide.intro||''}</div>
+      <div class="accordion-list quiz-accordion-list">
+        ${(slide.items||[]).map((q, idx)=>`
+          <details class="accordion quiz-accordion" ${idx===0 ? 'open' : ''}>
+            <summary>
+              <span class="accordion-number">Q${String(idx+1).padStart(2,'0')}</span>
+              <span>${q.q}</span>
+              <span class="sr-only">Expand or collapse question</span>
+            </summary>
+            <div class="accordion-body">
+              <div class="opt-list" style="margin-top:14px;">
+                ${q.options.map((opt, oIdx)=>`
+                  <button type="button" class="opt" onclick="checkAnswer(this, ${oIdx === q.correct}, '${q.why.replace(/'/g, "\'")}')">
+                    ${opt}
+                  </button>
+                `).join('')}
+              </div>
+              <div class="why" role="status" aria-live="polite"></div>
+            </div>
+          </details>
+        `).join('')}
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Scenario Cards
+  if (slide.type === "scenario") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      <div class="slide-body"><p>${slide.text}</p></div>
+      <div style="margin-top:20px;">
+        ${(slide.qa||[]).map(pair => `
+          <div style="margin-bottom:16px;">
+            <div style="font-weight:600; color:var(--tio-navy); margin-bottom:4px;">Q: ${pair.q}</div>
+            <div style="color:var(--ink-soft); padding-left:12px; border-left:3px solid var(--tio-teal);">A: ${pair.a}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }
+
+  // Word Wall Slide
+  if (slide.type === "wordwall") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      <div class="wordwall">
+        ${(slide.items||[]).map(w=>`<span>${w}</span>`).join("")}
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Reflection Prompt
+  if (slide.type === "reflection") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      <div style="font-size:18px; font-weight:600; color:var(--tio-navy); margin-bottom:14px;">${slide.prompt}</div>
+      <textarea class="notes" data-reflection-key="${reflectionKeyForSlide(slide)}" placeholder="Type your reflection notes here..."></textarea>
+      ${slide.hints ? `<div style="margin-top:16px; font-size:14px; color:var(--ink-soft);"><strong>Consider:</strong><ul style="padding-left:20px; margin-top:6px;">${slide.hints.map(h=>`<li>${h}</li>`).join('')}</ul></div>` : ''}
+    </div>`;
+  }
+
+
+  // True / False summary
+  if (slide.type === "truefalse") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title" tabindex="-1">${slide.title}</h2>
+      <div class="accordion-list">
+        ${(slide.qa||[]).map((item,idx)=>`
+          <details class="accordion" ${idx===0 ? 'open' : ''}>
+            <summary>
+              <span class="accordion-number">${String(idx+1).padStart(2,'0')}</span>
+              <span>${item.q}</span>
+              <span class="sr-only">Expand to answer</span>
+            </summary>
+            <div class="accordion-body">
+              <div style="margin-top:14px; font-weight:800; color:var(--tio-navy);">
+                ${item.correct === 0 ? 'True' : 'False'}
+              </div>
+              <p>${item.a}</p>
+            </div>
+          </details>
+        `).join("")}
+      </div>
+    </div>`;
+  }
+
+  // Citations and references
+  if (slide.type === "citations") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title" tabindex="-1">${slide.title}</h2>
+      <div class="resource-grid">
+        ${(slide.items||[]).map((item,idx)=>`
+          <div class="resource-card">
+            <h3>Reference ${String(idx+1).padStart(2,'0')}</h3>
+            <p>${item}</p>
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  }
+
+  // Key resources
+  if (slide.type === "resources") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title" tabindex="-1">${slide.title}</h2>
+      <div class="resource-grid">
+        ${(slide.items||[]).map((item,idx)=>`
+          <div class="resource-card">
+            <h3>${typeof item === "string" ? `Resource ${String(idx+1).padStart(2,'0')}` : item.title}</h3>
+            <p>${typeof item === "string" ? item : item.desc}</p>
+            ${typeof item === "object" && item.url ? `<a class="nav-btn primary" style="display:inline-block; margin-top:16px; text-decoration:none;" href="${item.url}" target="_blank" rel="noopener noreferrer">Open official resource<span class="sr-only"> (opens in a new tab)</span></a>` : ""}
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  }
+
+  // Downloads
+  if (slide.type === "downloads") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title" tabindex="-1">${slide.title}</h2>
+      <div class="resource-grid">
+        ${(slide.items||[]).map(item=>`
+          <div class="resource-card">
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+            <a class="nav-btn primary" style="display:inline-block; margin-top:16px; text-decoration:none;" href="${item.file}">
+              Open resource
+            </a>
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  }
+
+  // Certificate of Module Review
+  if (slide.type === "certificate") {
+    const sectionTotal = new Set(DATA.map(item => item.sec)).size;
+    const reviewedCount = viewedSections.size;
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title" tabindex="-1">You’ve reached the end of Module 1</h2>
+      <p style="color:var(--ink-soft); max-width:720px;">
+        This certificate reflects that you reviewed the module. The knowledge checks are opportunities to practice and revisit key ideas. They are not graded.
+      </p>
+
+      <div class="review-summary" aria-label="Module review summary">
+        <div class="review-summary-card">
+          <strong>Sections reviewed this visit</strong>
+          <span><span id="reviewedSectionCount">${reviewedCount}</span> of ${sectionTotal}</span>
+        </div>
+        <div class="review-summary-card">
+          <strong>Final page reached</strong>
+          <span>Yes</span>
+        </div>
+        <div class="review-summary-card">
+          <strong>Knowledge checks</strong>
+          <span>Optional practice. No score is required.</span>
+        </div>
+      </div>
+
+      <div class="certificate-form">
+        <label for="certificateName">Your name, as it should appear on the certificate</label>
+        <input
+          id="certificateName"
+          class="certificate-name-input"
+          type="text"
+          autocomplete="name"
+          maxlength="100"
+          oninput="updateCertificateButton()"
+          aria-describedby="certificatePrivacyNote">
+        <div class="certificate-actions">
+          <button type="button" class="nav-btn primary" id="createCertificateBtn" onclick="createCertificate()" disabled>
+            Create my certificate
+          </button>
+        </div>
+        <div class="certificate-note" id="certificatePrivacyNote">
+          Nothing is stored. Your name, progress, and typed reflections remain only in memory while this page is open and reset when it is refreshed or closed.
+        </div>
+      </div>
+
+      <div class="certificate-preview" id="certificatePreview" aria-live="polite">
+        <div class="cert-org">Trauma Informed Oregon</div>
+        <h3>Certificate of Module Review</h3>
+        <div>Presented to</div>
+        <div class="cert-name" id="certificateDisplayName"></div>
+        <div>for reviewing</div>
+        <div class="cert-module">Minor Consent to Behavioral Health Care</div>
+        <div class="cert-sub">Module 1 · For Behavioral Health Care Providers</div>
+        <div class="cert-meta">
+          <span><strong>Reviewed on:</strong> <span id="certificateDate"></span></span>
+        </div>
+        <div class="cert-disclaimer">
+          This certificate documents review of an educational module. It does not provide legal advice or continuing education credit.
+        </div>
+      </div>
+
+      <div class="certificate-actions" id="certificateOutputActions" style="display:none;">
+        <button type="button" class="nav-btn primary" onclick="printCertificate()">Print or save as PDF</button>
+        <button type="button" class="nav-btn" onclick="downloadCertificateFile()">Save as an HTML file</button>
+      </div>
+    </div>`;
+  }
+
+  // Closing Slide
+  if (slide.type === "closing") {
+    return `<div class="divider-slide" style="text-align:center; padding:48px 24px;">
+      <blockquote style="font-size:20px; font-style:italic; line-height:1.5; margin-bottom:24px; color:#FFFFFF;">
+        "${slide.quote}"
+      </blockquote>
+      <h2 style="color:var(--tio-yellow);">${slide.title}</h2>
+    </div>`;
+  }
+
+  // Page 7: balanced key-idea layout
+  if (slide.type === "text" && slide.title === "Minor Consent to Behavioral Health Services") {
+    return eyebrow + `<div class="card key-idea-card">
+      <div>
+        <h2 class="slide-title">${slide.title}</h2>
+        <div class="key-idea-grid">
+          <div class="key-idea-copy">
+            <p>${(slide.body||[]).join(" ")}</p>
+          </div>
+          <div class="key-idea-points" aria-label="Key ideas">
+            <div class="key-idea-point">
+              <strong>Access</strong>
+              <span>A pathway into behavioral health care.</span>
+            </div>
+            <div class="key-idea-point">
+              <strong>Choice</strong>
+              <span>Recognizes a young person’s role in seeking services.</span>
+            </div>
+            <div class="key-idea-point">
+              <strong>Timely support</strong>
+              <span>Reduces barriers that may delay care.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Other short concept slides
+  if (slide.type === "text" && SHORT_SLIDE_VISUALS[slide.title]) {
+    const visual = SHORT_SLIDE_VISUALS[slide.title];
+    const statement = (slide.body||[]).join(" ");
+    return eyebrow + `<div class="card statement-slide">
+      <div class="statement-inner">
+        <div class="statement-label">${visual.label}</div>
+        <h2 class="slide-title">${slide.title}</h2>
+        <p class="statement-text" style="font-size:28px;">${statement}</p>
+        <div class="statement-foot">
+          ${visual.tags.map(t=>`<span class="statement-tag">${t}</span>`).join("")}
+        </div>
+        ${audioPlayer}
+      </div>
+    </div>`;
+  }
+
+  // Consent comparison slide
+  if (slide.type === "text" && slide.title === "Who, What and When?") {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      ${renderConceptTable(slide)}
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Repeating practice pathway on the central consent/involvement/disclosure ideas
+  if (slide.type === "text" && [
+      "Behavioral Health Focus",
+      "Substance Use Disorder Treatment"
+    ].includes(slide.title)) {
+    return eyebrow + `<div class="card">
+      <h2 class="slide-title">${slide.title}</h2>
+      <div class="concept-layout">
+        <div class="concept-main">
+          ${(slide.body||[]).map(p=>`<p>${p}</p>`).join("")}
+          ${slide.list ? `<ul style="padding-left:20px;">${slide.list.map(li=>`<li style="margin-bottom:10px;">${li}</li>`).join("")}</ul>` : ""}
+        </div>
+        <div class="concept-side">
+          <div class="concept-side-label">Practice pathway</div>
+          <div class="concept-anchors">
+            <div class="concept-anchor">Ask</div>
+            <div class="concept-anchor">Assess</div>
+            <div class="concept-anchor">Consult</div>
+            <div class="concept-anchor">Document</div>
+          </div>
+        </div>
+      </div>
+      ${audioPlayer}
+    </div>`;
+  }
+
+  // Standard Text Slide
+  return eyebrow + `<div class="card">
+    <h2 class="slide-title">${slide.title}</h2>
+    ${(slide.body||[]).map(p=>`<p>${p}</p>`).join("")}
+    ${slide.list ? `<ul style="padding-left:20px;">${slide.list.map(li=>`<li style="margin-bottom:8px;">${li}</li>`).join('')}</ul>` : ''}
+    ${slide.items ? `<ul style="padding-left:20px;">${slide.items.map(li=>`<li style="margin-bottom:8px;">${typeof li === 'string' ? li : li.title || li.text}</li>`).join('')}</ul>` : ''}
+    ${audioPlayer}
+  </div>`;
+}
+
+
+
+function updateCertificateButton() {
+  const input = document.getElementById('certificateName');
+  const button = document.getElementById('createCertificateBtn');
+  if (!input || !button) return;
+  button.disabled = input.value.trim().length === 0;
+}
+
+function createCertificate() {
+  const input = document.getElementById('certificateName');
+  const preview = document.getElementById('certificatePreview');
+  const displayName = document.getElementById('certificateDisplayName');
+  const dateTarget = document.getElementById('certificateDate');
+  const actions = document.getElementById('certificateOutputActions');
+
+  if (!input || !preview || !displayName || !dateTarget || !actions) return;
+
+  const name = input.value.trim();
+  if (!name) {
+    input.focus();
+    return;
+  }
+
+  const formattedDate = new Intl.DateTimeFormat('en-US', {
+    month:'long',
+    day:'numeric',
+    year:'numeric'
+  }).format(new Date());
+
+  displayName.textContent = name;
+  dateTarget.textContent = formattedDate;
+  preview.classList.add('is-visible');
+  actions.style.display = 'flex';
+  preview.setAttribute('tabindex','-1');
+  preview.focus({preventScroll:false});
+}
+
+function printCertificate() {
+  window.print();
+}
+
+function downloadCertificateFile() {
+  const preview = document.getElementById('certificatePreview');
+  const name = document.getElementById('certificateDisplayName')?.textContent?.trim() || 'Participant';
+  if (!preview || !preview.classList.contains('is-visible')) return;
+
+  const safeName = name.replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-') || 'Participant';
+  const styles = `
+    body{font-family:Arial,sans-serif;margin:0;padding:40px;background:#fff;color:#1D2B36}
+    .certificate{border:3px solid #355166;border-radius:16px;padding:44px;text-align:center;max-width:900px;margin:0 auto}
+    .org{font-size:17px;color:#006B8F;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+    h1{font-size:34px;color:#355166;margin:10px 0 18px}
+    .name{font-size:30px;font-weight:800;color:#223645;margin:20px 0 8px}
+    .module{font-size:22px;font-weight:700;color:#355166;margin:10px 0 2px}
+    .sub{color:#425866;margin-bottom:20px}
+    .meta{margin:22px 0;color:#425866}
+    .note{margin:24px auto 0;max-width:680px;padding-top:18px;border-top:1px solid rgba(53,81,102,.2);color:#425866;font-size:13px;line-height:1.5}
+  `;
+
+  const date = document.getElementById('certificateDate')?.textContent || '';
+  const doc = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Certificate of Module Review</title><style>${styles}</style></head><body><main class="certificate"><div class="org">Trauma Informed Oregon</div><h1>Certificate of Module Review</h1><div>Presented to</div><div class="name">${escapeHTML(name)}</div><div>for reviewing</div><div class="module">Minor Consent to Behavioral Health Care</div><div class="sub">Module 1 · For Behavioral Health Care Providers</div><div class="meta"><strong>Reviewed on:</strong> ${escapeHTML(date)}</div><div class="note">This certificate documents review of an educational module. It does not provide legal advice or continuing education credit.</div></main></body></html>`;
+
+  const blob = new Blob([doc], {type:'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${safeName}-Minor-Consent-Module-Review.html`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function escapeHTML(value) {
+  return String(value)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+}
+
+
+function toggleReveal(button) {
+  const card = button.closest('.reveal-card');
+  const grid = card.closest('.reveal-grid');
+  const willOpen = !card.classList.contains('is-open');
+
+  if (grid) {
+    grid.querySelectorAll('.reveal-card.is-open').forEach(otherCard => {
+      if (otherCard !== card) {
+        otherCard.classList.remove('is-open');
+        const otherButton = otherCard.querySelector('.reveal-trigger');
+        if (otherButton) otherButton.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  card.classList.toggle('is-open', willOpen);
+  button.setAttribute('aria-expanded', String(willOpen));
+}
+
+
+function initializeSlideNarration() {
+  document.querySelectorAll('audio.slide-narration').forEach(audio => {
+    const start = Number(audio.dataset.start || 0);
+    const end = audio.dataset.end ? Number(audio.dataset.end) : null;
+    const status = audio.closest('.audio-player-container')?.querySelector('.audio-status');
+
+    const setStartPosition = () => {
+      if (Number.isFinite(start) && start > 0 && audio.currentTime < start) {
+        try { audio.currentTime = start; } catch (e) {}
+      }
+    };
+
+    audio.addEventListener('loadedmetadata', setStartPosition, {once:true});
+
+    audio.addEventListener('play', () => {
+      if (Number.isFinite(start) && audio.currentTime < start) {
+        try { audio.currentTime = start; } catch (e) {}
+      }
+      if (status) {
+        status.textContent = "";
+        status.classList.remove('is-error');
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (Number.isFinite(end) && audio.currentTime >= end) {
+        audio.pause();
+        try { audio.currentTime = start; } catch (e) {}
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      if (Number.isFinite(start)) {
+        try { audio.currentTime = start; } catch (e) {}
+      }
+    });
+
+    audio.addEventListener('error', () => {
+      if (status) {
+        status.textContent = "Narration could not be loaded. Confirm that the audio files are in the same folder as this module.";
+        status.classList.add('is-error');
+      }
+    }, true);
+  });
+}
+
+
+function initializeAccordions() {
+  document.querySelectorAll('.quiz-accordion-list').forEach(list => {
+    const items = list.querySelectorAll('details');
+    items.forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          items.forEach(other => {
+            if (other !== item) other.open = false;
+          });
+        }
+      });
+    });
+  });
+}
+
+function checkAnswer(btn, isCorrect, explanation) {
+  const qBox = btn.closest('.quiz-q');
+  const opts = qBox.querySelectorAll('.opt');
+  const whyBox = qBox.querySelector('.why');
+
+  opts.forEach(o => o.disabled = true);
+  if (isCorrect) {
+    btn.classList.add('correct');
+  } else {
+    btn.classList.add('incorrect');
+  }
+
+  whyBox.innerHTML = `<strong>${isCorrect ? 'Correct.' : 'Review this answer.'}</strong> ${explanation}`;
+  whyBox.classList.add('open');
+}
+
+
+const reflectionDrafts = new Map();
+function saveVisibleReflection() {
+  const box = document.querySelector('textarea.notes[data-reflection-key]');
+  if (box) reflectionDrafts.set(box.dataset.reflectionKey, box.value);
+}
+function restoreVisibleReflection() {
+  const box = document.querySelector('textarea.notes[data-reflection-key]');
+  if (box) box.value = reflectionDrafts.get(box.dataset.reflectionKey) || "";
+}
+function reflectionKeyForSlide(slide) {
+  return `${slide.sec}::${slide.title || current}`;
+}
+
+const viewedSections = new Set();
+let current = 0;
+function update(){
+  const stage = document.getElementById("stage");
+  stage.classList.remove("slide-stage-enter");
+  void stage.offsetWidth; 
+  stage.classList.add("slide-stage-enter");
+
+  const slide = DATA[current];
+  viewedSections.add(slide.sec);
+  stage.innerHTML = render(slide);
+
+  // Update Progress Bars & Sidebar Labels
+  const pct = Math.round(((current + 1) / DATA.length) * 100);
+  document.getElementById("sideProgress").style.width = pct + "%";
+  document.getElementById("sideProgressLabel").textContent = `Slide ${current + 1} of ${DATA.length}`;
+  document.getElementById("topFill").style.width = pct + "%";
+
+  document.getElementById("prevBtn").disabled = current === 0;
+  document.getElementById("nextBtn").disabled = current === DATA.length - 1;
+  document.getElementById("stepCount").textContent = `${current+1} / ${DATA.length}`;
+  
+  // Highlight active section in sidebar
+  const items = document.querySelectorAll('.sec-item');
+  items.forEach(it => {
+    if (it.getAttribute('data-sec') === slide.sec) {
+      it.classList.add('active');
+      it.setAttribute('aria-current','page');
+    } else {
+      it.classList.remove('active');
+      it.removeAttribute('aria-current');
+    }
+  });
+
+  initializeAccordions();
+  initializeSlideNarration();
+  restoreVisibleReflection();
+
+  const heading = stage.querySelector('h1, h2');
+  if (heading) {
+    heading.setAttribute('tabindex','-1');
+    requestAnimationFrame(() => heading.focus({preventScroll:true}));
+  }
+}
+
+document.getElementById("prevBtn").addEventListener("click", ()=>{ if(current>0){ saveVisibleReflection(); current--; update(); }});
+document.getElementById("nextBtn").addEventListener("click", ()=>{ if(current<DATA.length-1){ saveVisibleReflection(); current++; update(); }});
+
+// Build Sidebar Navigation Items dynamically
+function buildSidebarNav() {
+  const nav = document.getElementById("sectionNav");
+  const sections = [...new Set(DATA.map(d => d.sec))];
+  
+  nav.innerHTML = sections.map(sec => {
+    const firstIdx = DATA.findIndex(d => d.sec === sec);
+    return `<button type="button" class="sec-item" data-sec="${sec}" onclick="jumpToSlide(${firstIdx})">
+      <span class="sec-dot" aria-hidden="true"></span>
+      <span>${sec}</span>
+    </button>`;
+  }).join('');
+}
+
+function jumpToSlide(idx) {
+  saveVisibleReflection();
+  current = idx;
+  update();
+}
+
+
+function auditNarrationAssignments() {
+  return DATA.map((slide, index) => ({
+    page: index + 1,
+    title: slide.title || slide.sec,
+    audioFile: slide.audioFile || null,
+    startTime: slide.startTime ?? null,
+    endTime: slide.endTime ?? null
+  })).filter(item => item.audioFile);
+}
+window.auditNarrationAssignments = auditNarrationAssignments;
+
+
+buildSidebarNav();
+update();
+</script>
+</body>
+</html>
